@@ -25,4 +25,29 @@ console.log(error);
 }
 });
 
+
+
+//login
+router.post("/login",async(req,res)=>{
+
+    try{
+
+        const user=await User.findOne({email:req.body.email});
+   
+        if(!user){
+            res.status(404).json( "Invalid credentials , there is no assiciated user with this email");
+            
+        }
+
+        const isPasswordMatch=await bcrypt.compare(req.body.password,user.password);
+        if(isPasswordMatch){
+            res.status(200).json({message:"logged in succefully",user});
+        }
+       else  res.status(400).json( "Invalid credentials , wrong password");
+
+
+    }catch(error){
+        console.log(error);
+    }
+});
 module.exports=router;
