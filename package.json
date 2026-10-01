@@ -1,0 +1,20 @@
+{
+  "name": "social-app",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js "
+  },
+  "dependencies": {
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "mongoose": "^9.10.3",
+    "morgan": "^1.12.1",
+    "nodemon": "^3.1.14"
+  }
+}
