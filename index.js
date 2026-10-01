@@ -6,6 +6,8 @@ const helmet=require("helmet");
 const morgan=require("morgan");
 const userRoutes=require("./routes/users.js");
 const authRoutes=require("./routes/auth.js");
+const postRoutes=require("./routes/posts.js");
+
 
 dotenv.config();
 
@@ -20,6 +22,7 @@ app.use(express.json());
 //routes
 app.use("/api/users",userRoutes);
 app.use("/api/auth",authRoutes);
+app.use("/api/posts",postRoutes);
 
 app.listen(3000,()=>{
 console.log("server is running");
