@@ -31,4 +31,21 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
+
+//delete user
+router.delete("/delete/:id", async (req, res) => {
+  if (req.body.userId === req.params.id || req.body.isAdmin) {
+  
+
+    try {
+      const user = await User.deleteOne({_id:req.params.id});
+      return res.status(200).json("account has been deleted");
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  } else {
+    return res.status(403).json("you can delete only your account");
+  }
+}); 
+
 module.exports = router;
