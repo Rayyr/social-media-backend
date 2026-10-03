@@ -1,19 +1,31 @@
-const express=require("express");
-const Post=require("../models/Post.js");
+const express = require("express");
+const Post = require("../models/Post.js");
 
-const router=express.Router();
-
+const router = express.Router();
 
 //create a post
-router.post("/create",async(req,res)=>{
-
-    
-    try{
-        const newPost=await new Post(req.body).save();
-   return res.status(200).json(newPost); 
-    }catch(error){
-        return res.status(500).json(error);
-    }
+router.post("/create", async (req, res) => {
+  try {
+    const newPost = await new Post(req.body).save();
+    return res.status(200).json(newPost);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
 });
 
-module.exports=router;
+//update post
+router.put("/update/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (post.userId === req.body.userId) {
+      await post.updateOne({ $set: req.body });
+      return res.status(200).json("the post has been updated");
+    } else {
+      return res.status(403).json("you can only update your post");
+    }
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
+module.exports = router;
