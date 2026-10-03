@@ -72,7 +72,7 @@ router.get("/get-post/:id", async (req, res) => {
 
 
 //get timeline posts
-router.get("/timeline",async(req,res)=>{
+router.get("/timeline/all",async(req,res)=>{
 
     let postArray=[];
     try{
